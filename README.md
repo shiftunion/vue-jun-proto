@@ -1,2 +1,4 @@
 # vue-fundamentals
-Repo for working with the Pluralsight Vue Fundamentals course
+Repo for working with the Pluralsight Vue Fundamentals course.
+
+Killer bees
