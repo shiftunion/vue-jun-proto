@@ -1,32 +1,37 @@
 <template>
-   <div>
+   <div class="content">
+    <button class="add-to-cart" @click="addToCart()">Add to Cart!</button>
     <div class="top-row">
       <div class="top part">
-        <img v-bind:src="availableParts.heads[selectedHeadIndex].src" title="head"/>
+      <div class="robot-name">
+          {{selectedRobot.head.title}}
+          <span v-if="selectedRobot.head.onSale" class="sale">Sale!!!</span>
+      </div>
+        <img v-bind:src="selectedRobot.head.src" title="head"/>
         <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
         <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>
       </div>
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="availableParts.arms[selectedLeftArmIndex].src" title="left arm"/>
+        <img v-bind:src="selectedRobot.leftArm.src" title="left arm"/>
         <button @click="selectNextLeftArm()" class="prev-selector">&#9650;</button>
         <button @click="selectPreviousLeftArm()" class="next-selector">&#9660;</button>
       </div>
       <div class="center part">
-        <img v-bind:src="availableParts.torsos[selectedTorsoIndex].src" title="torso"/>
+        <img v-bind:src="selectedRobot.torso.src" title="torso"/>
         <button v-on:click="selectNextTorso()" class="prev-selector">&#9668;</button>
         <button v-on:click="selectPreviousTorso()" class="next-selector">&#9658;</button>
       </div>
       <div class="right part">
-        <img :src="availableParts.arms[selectedRightArmIndex].src" title="right arm"/>
+        <img :src="selectedRobot.rightArm.src" title="right arm"/>
         <button @click="selectNextRightArm()" class="prev-selector">&#9650;</button>
         <button @click="selectPreviousRightArm()" class="next-selector">&#9660;</button>
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
-        <img :src="availableParts.bases[selectedBaseIndex].src" title="base"/>
+        <img :src="selectedRobot.base.src" title="base"/>
         <button @click="selectNextBase()" class="prev-selector">&#9668;</button>
         <button @click="selectPreviousBase()" class="next-selector">&#9658;</button>
       </div>
@@ -45,6 +50,7 @@ export default {
   name: 'RobotBuilder',
   data() {
     return {
+      cart: [],
       availableParts,
       selectedHeadIndex: 0,
       selectedRightArmIndex: 0,
@@ -53,7 +59,31 @@ export default {
       selectedBaseIndex: 0,
     };
   },
+  /*
+  Use computed properties as it's not a good idea to have complex methods in your template
+  Why? A more simple template
+  */
+  computed: {
+    selectedRobot() {
+      return {
+        head: availableParts.heads[this.selectedHeadIndex],
+        leftArm: availableParts.arms[this.selectedLeftArmIndex],
+        rightArm: availableParts.arms[this.selectedRightArmIndex],
+        torso: availableParts.torsos[this.selectedTorsoIndex],
+        base: availableParts.bases[this.selectedBaseIndex],
+      };
+    },
+  },
   methods: {
+    addToCart() {
+      const robot = this.selectedRobot;
+      const cost =
+        robot.head.cost +
+        robot.leftArm.cost +
+        robot.torso.cost +
+        robot.base.cost;
+      this.cart.push(Object.assign({}, robot, { cost })); // object assign  clones the object
+    },
     selectNextHead() {
       this.selectedHeadIndex = nextValidIndex(
         this.selectedHeadIndex,
@@ -206,6 +236,25 @@ export default {
 }
 .right .next-selector {
   right: -3px;
+}
+.robot-name {
+  position: absolute;
+  top: -25px;
+  text-align: center;
+  width: 100%;
+}
+.sale {
+  color: red;
+}
+.content {
+  position: relative;
+}
+.add-to-cart {
+  position: absolute;
+  right: 30px;
+  width: 220px;
+  padding: 3px;
+  font-size: 16px;
 }
 </style>
 
