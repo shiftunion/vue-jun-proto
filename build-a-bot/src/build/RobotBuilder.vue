@@ -1,42 +1,60 @@
 <template>
-   <div class="content">
+  <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add to Cart!</button>
     <div class="top-row">
-      <div class="top part">
-      <div class="robot-name">
+      <div class="top part" :style="headBorderStyle">
+        <div class="robot-name">
           {{selectedRobot.head.title}}
           <span v-if="selectedRobot.head.onSale" class="sale">Sale!!!</span>
-      </div>
-        <img v-bind:src="selectedRobot.head.src" title="head"/>
+        </div>
+        <img v-bind:src="selectedRobot.head.src" title="head" />
         <button v-on:click="selectPreviousHead()" class="prev-selector">&#9668;</button>
         <button v-on:click="selectNextHead()" class="next-selector">&#9658;</button>
       </div>
     </div>
     <div class="middle-row">
       <div class="left part">
-        <img v-bind:src="selectedRobot.leftArm.src" title="left arm"/>
+        <img v-bind:src="selectedRobot.leftArm.src" title="left arm" />
         <button @click="selectNextLeftArm()" class="prev-selector">&#9650;</button>
         <button @click="selectPreviousLeftArm()" class="next-selector">&#9660;</button>
       </div>
       <div class="center part">
-        <img v-bind:src="selectedRobot.torso.src" title="torso"/>
+        <img v-bind:src="selectedRobot.torso.src" title="torso" />
         <button v-on:click="selectNextTorso()" class="prev-selector">&#9668;</button>
         <button v-on:click="selectPreviousTorso()" class="next-selector">&#9658;</button>
       </div>
       <div class="right part">
-        <img :src="selectedRobot.rightArm.src" title="right arm"/>
+        <img :src="selectedRobot.rightArm.src" title="right arm" />
         <button @click="selectNextRightArm()" class="prev-selector">&#9650;</button>
         <button @click="selectPreviousRightArm()" class="next-selector">&#9660;</button>
       </div>
     </div>
     <div class="bottom-row">
       <div class="bottom part">
-        <img :src="selectedRobot.base.src" title="base"/>
+        <img :src="selectedRobot.base.src" title="base" />
         <button @click="selectNextBase()" class="prev-selector">&#9668;</button>
         <button @click="selectPreviousBase()" class="next-selector">&#9658;</button>
       </div>
     </div>
+    <div>
+      <h1>Cart</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Robot</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(robot,index) in cart" :key="index">
+            <td>{{robot.head.title}}</td>
+            <td class="cost">{{robot.cost}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+
 
 </template>
 <script>
@@ -71,6 +89,13 @@ export default {
         rightArm: availableParts.arms[this.selectedRightArmIndex],
         torso: availableParts.torsos[this.selectedTorsoIndex],
         base: availableParts.bases[this.selectedBaseIndex],
+      };
+    },
+    headBorderStyle() {
+      return {
+        border: this.selectedRobot.head.onSale ?
+          '3px solid red' :
+          '3px solid grey',
       };
     },
   },
@@ -147,7 +172,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .part {
   position: relative;
   width: 165px;
@@ -255,6 +280,15 @@ export default {
   width: 220px;
   padding: 3px;
   font-size: 16px;
+}
+td,
+th {
+  text-align: left;
+  padding: 5px;
+  padding-right: 20px;
+}
+.cost {
+  text-align: right;
 }
 </style>
 
