@@ -83,6 +83,13 @@ Sometimes it makes sense to emit a default state for child when rendering like s
     //  a wrapper for above  this.$emit('partSelected', this.selectedPart);
   },
  ```
+ using the `updated` hook can make life easier at times, saving you intercepting too many events!
+
+```
+   updated() {
+    this.emitSelectedPart();
+  },
+```
 
 
 

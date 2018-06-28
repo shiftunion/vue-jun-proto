@@ -39,17 +39,18 @@ export default {
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
     selectPreviousPart() {
       this.selectedPartIndex = previousValidIndex(
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
   },
   created() {
+    this.emitSelectedPart();
+  },
+  updated() {
     this.emitSelectedPart();
   },
 };
