@@ -4,7 +4,8 @@
       <img class="robot" src="../assets/robot-home.png"  aria-hidden="true" />
     </div>
     <div class="get-started">
-      <a href="">Get started</a> building your first robot!
+      <a href="#/build">Get started</a> building your first robot! <br />
+      <router-link to="/build">Get started</router-link> vue link<br />
     </div>
   </div>
 </template>

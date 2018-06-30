@@ -91,6 +91,70 @@ Sometimes it makes sense to emit a default state for child when rendering like s
   },
 ```
 
+#### Slots
+Slots can be used to push in external content into a control... collapsible menu's are an example.
+
+### Routing
+Install the vue-router:  
+`npm install vue-router --save`
+
+Define the router and routes:
+
+```
+import Vue from 'vue';
+import Router from 'vue-router';
+
+import HomePage from '../home/HomePage.vue';
+import RobotBuilder from '../build/RobotBuilder.vue';
+
+Vue.use(Router);
+
+export default new Router({
+  routes: [{
+    path: '/',
+    name: 'Home',
+    component: HomePage,
+  },
+  {
+    path: '/build',
+    name: 'Build',
+    component: RobotBuilder,
+  }],
+});
+```
+
+use vue `router-link`
+
+```
+<router-link to="/build">Get started</router-link> vue link<br />
+```
+
+or you can bind to a route name:
+
+```
+<router-link class="nav-link" :to="{name: 'Home'}">
+```  
+
+Register the router in in Main app
+
+```
+import Vue from 'vue';
+import App from './App.vue';
+
+import router from './router';
+
+Vue.config.productionTip = false;
+
+new Vue({
+  render: h => h(App),
+  router,
+}).$mount('#app');
+```
+
+
+
+
+
 
 
 
