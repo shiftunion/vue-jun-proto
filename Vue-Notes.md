@@ -150,6 +150,16 @@ new Vue({
   router,
 }).$mount('#app');
 ```
+Routes can be called programatically  
+
+```
+ methods: {
+    showPartInfo() {
+      this.$router.push('/parts');
+    },
+```
+#### Router Params
+
 
 
 
