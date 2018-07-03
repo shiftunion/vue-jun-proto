@@ -4,21 +4,62 @@ import Router from 'vue-router';
 import HomePage from '../home/HomePage.vue';
 import PartInfo from '../parts/PartInfo.vue';
 import RobotBuilder from '../build/RobotBuilder.vue';
+import BrowseParts from '../parts/BrowseParts.vue';
+import RobotHeads from '../parts/RobotHeads.vue';
+
+import RobotArms from '../parts/RobotArms.vue';
+import RobotTorsos from '../parts/RobotTorsos.vue';
+import RobotBases from '../parts/RobotBases.vue';
+
+import SidebarStandard from '../sidebars/SidebarStandard.vue';
+import SidebarBuild from '../sidebars/SidebarBuild.vue';
+
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [{
     path: '/',
     name: 'Home',
-    component: HomePage,
-  },
-  {
+    components: {
+      default: HomePage,
+      sidebar: SidebarStandard,
+    },
+  }, {
     path: '/build',
     name: 'Build',
-    component: RobotBuilder,
-  },
-  {
+    components: {
+      default: RobotBuilder,
+      sidebar: SidebarBuild,
+    },
+  }, {
+    path: '/parts/browse', // must be infront of route below, else router gets confused
+    name: 'BrowseParts',
+    component: BrowseParts,
+    children: [
+      {
+        name: 'BrowseArms',
+        path: 'Arms',
+        component: RobotArms,
+      },
+      {
+        name: 'BrowseTorsos',
+        path: 'Torsos',
+        component: RobotTorsos,
+      },
+      {
+        name: 'BrowseBases',
+        path: 'Bases',
+        component: RobotBases,
+      },
+      {
+        name: 'BrowseHeads',
+        path: 'Heads',
+        component: RobotHeads,
+      },
+    ],
+  }, {
     path: '/parts/:partType/:id',
     name: 'Parts',
     component: PartInfo,

@@ -158,7 +158,15 @@ Routes can be called programatically
       this.$router.push('/parts');
     },
 ```
-#### Router Params
+#### HTML History Mode
+Change router index.js to
+
+```
+export default new Router({
+  mode: 'history',
+  routes: [{
+  ```
+ To get HTML history mode to work well (i.e. supporting deep linking), you need to get you web server to serve the `vue` home index every time. Vue has some good docs for this.
 
 
 
