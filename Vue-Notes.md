@@ -167,6 +167,41 @@ export default new Router({
   routes: [{
   ```
  To get HTML history mode to work well (i.e. supporting deep linking), you need to get you web server to serve the `vue` home index every time. Vue has some good docs for this.
+ 
+ #### Navigation Route Guards
+ The can proactively disable any routes that will not work. Added to a route  
+   
+```
+ {
+    path: '/parts/:partType/:id',
+    name: 'Parts',
+    component: PartInfo,
+    props: true,
+    beforeEnter(to, from, next) {
+      const isValidId = Number.isInteger(Number(to.params.id));
+      next(isValidId);
+    }
+```
+#### Preventing users leaving pages with edits
+##### Before leave route guard
+On a component:
+
+```
+export default {
+  name: 'RobotBuilder',
+  beforeRouteLeave(to, from, next) {
+    if (this.addedToCart) { next(true); } else {
+      const response = confirm('You have not added you robot, are you crazy?!?');
+      next(response);
+    }
+  },
+```
+
+
+    
+    
+    
+ 
 
 
 

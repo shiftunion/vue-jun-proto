@@ -81,12 +81,21 @@ import createdHookMixin from './created-hook-mixin';
 import PartsSelector from './PartsSelector.vue';
 import CollapsibleSection from '../shared/CollapsibleSection.vue';
 
+/* eslint no-alert: 0 */
+/* eslint no-restricted-globals: 0 */
 export default {
   name: 'RobotBuilder',
+  beforeRouteLeave(to, from, next) {
+    if (this.addedToCart) { next(true); } else {
+      const response = confirm('You have not added you robot, are you crazy?!?');
+      next(response);
+    }
+  },
   components: { PartsSelector, CollapsibleSection },
   data() {
     return {
       cart: [],
+      addedToCart: false,
       availableParts,
       selectedRobot: {
         head: {},
@@ -116,6 +125,7 @@ export default {
         robot.rightArm.cost +
         robot.torso.cost +
         robot.base.cost;
+      this.addedToCart = true;
       this.cart.push(Object.assign({}, robot, { cost })); // object assign clones the object
     },
   },
