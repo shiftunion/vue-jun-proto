@@ -198,6 +198,10 @@ export default {
 ```
 
 
+## State with Vuex
+* Properties must be added to state with sensible default, not added at run-time
+* All changes must go through a mutation
+* 
     
     
     
