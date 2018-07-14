@@ -201,9 +201,34 @@ export default {
 ## State with Vuex
 * Properties must be added to state with sensible default, not added at run-time
 * All changes must go through a mutation
-* 
-    
-    
+
+##### Vuex Getters
+For the derived state from the Store state
+
+Mutators and getters in action
+
+```
+export default new Vuex.Store({
+  state: {
+    cart: [],
+  },
+  mutations: {
+    addRobotToCart(state, robot) {
+      state.cart.push(robot);
+    },
+  },
+  getters: {
+    cartSaleItems(state) {
+      return state.cart.filter(item => item.head.onSale);
+    },
+  },
+});
+```
+
+### Actions and asynch
+
+  
+  
     
  
 
