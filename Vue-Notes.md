@@ -226,6 +226,34 @@ export default new Vuex.Store({
 ```
 
 ### Actions and asynch
+using axios for HTTP calls
+
+View `created()` hook calls axios, one once this returns, the store is updated and the computed value is updated, which in-turn updates the view. Add and `actions` section to the store as so.
+
+```
+  actions: {
+    getParts({ commit }) {
+      axios.get('/api/parts')
+        .then(result => commit('updateParts', result.data))
+        .catch(console.error);
+    },
+  },
+```
+
+vue enables a local proxy for API calls to deal with `cors` issues
+
+```
+module.exports = {
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://locahost:8081',
+        changeOrigin: true,
+      },
+    },
+  },
+};
+```
 
   
   
