@@ -226,9 +226,9 @@ export default new Vuex.Store({
 ```
 
 ### Actions and asynch
-using axios for HTTP calls
+using Axios for HTTP calls
 
-View `created()` hook calls axios, one once this returns, the store is updated and the computed value is updated, which in-turn updates the view. Add and `actions` section to the store as so.
+View `created()` hook calls Axios, one once this returns, the store is updated and the computed value is updated, which in-turn updates the view. Add and `actions` section to the store as so.
 
 ```
   actions: {
