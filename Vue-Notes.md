@@ -271,6 +271,8 @@ Use `dispatch` from the vue `method` and get it to return a promise.
         .then(() => commit('addRobotToCart', robot));
     },
 ```
+
+### Splitting your store into modules 
   
   
   
