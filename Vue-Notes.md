@@ -293,7 +293,15 @@ In namespaced form, getter notation must change from dot notation to
     cartSaleItems() {
       return this.$store.getters['robots/cartSaleItems'];
 ```
-  
+
+### Global vs Namespaced State
+**Root state**: is any state in the root store, as well as non-namespaced state objects in modules. The root namespace
+
+* You can access your root state from namespaced store. It is the 3rd param named `rootState` on the getter method.
+* Controversially, `rootState` is not available to `mutations` ,but but be accessed in `actions` via destructuring.
+
+### Vuex Helper Functions
+
   
   
     
