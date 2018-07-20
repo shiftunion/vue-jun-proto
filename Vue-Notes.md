@@ -255,15 +255,19 @@ module.exports = {
 };
 ```
 #### Command Actions (Writing)
-Use `dispatch` from the vue `method`
- `this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost })); `
- 
- The use axios and commit like so.
+Use `dispatch` from the vue `method` and get it to return a promise.
+
+```
+ this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost }))
+ .then(() => this.$router.push('/cart'));`
+ ```
+
+ The use axios to return promise and commit like so.
 
 ```
     addRobotToCart({ commit, state }, robot) {
       const cart = [...state.cart, robot];
-      axios.post('api/cart', cart)
+      return axios.post('api/cart', cart)
         .then(() => commit('addRobotToCart', robot));
     },
 ```
