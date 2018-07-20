@@ -254,7 +254,21 @@ module.exports = {
   },
 };
 ```
+#### Command Actions (Writing)
+Use `dispatch` from the vue `method`
+ `this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost })); `
+ 
+ The use axios and commit like so.
 
+```
+    addRobotToCart({ commit, state }, robot) {
+      const cart = [...state.cart, robot];
+      axios.post('api/cart', cart)
+        .then(() => commit('addRobotToCart', robot));
+    },
+```
+  
+  
   
   
     
