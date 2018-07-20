@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-
+  namespaced: true, // This means that you must explcity call this action is dispatch
   state: {
     cart: [],
     parts: null,

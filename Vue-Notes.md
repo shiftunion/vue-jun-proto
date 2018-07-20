@@ -258,7 +258,7 @@ module.exports = {
 Use `dispatch` from the vue `method` and get it to return a promise.
 
 ```
- this.$store.dispatch('addRobotToCart', Object.assign({}, robot, { cost }))
+ this.$store.dispatch('robots/addRobotToCart', Object.assign({}, robot, { cost }))
  .then(() => this.$router.push('/cart'));`
  ```
 
@@ -273,7 +273,26 @@ Use `dispatch` from the vue `method` and get it to return a promise.
 ```
 
 ### Splitting your store into modules 
-  
+#### Namespaced Modules
+You can get vue to dispatch to multiple store events with one dispatch.. Nice! Feels like and event! Namespace modules will help prevent this.
+
+`State` is always namespaced,  but `mutations`, `getters`, `actions` are only namespaced if you set  `namespaced: true,`
+
+
+```
+export default {
+  namespaced: true,
+```
+
+After the namespace, the store dispatch must look like this:
+`$store.dispatch('robots/robots/getParts);`  
+
+In namespaced form, getter notation must change from dot notation to
+
+```
+    cartSaleItems() {
+      return this.$store.getters['robots/cartSaleItems'];
+```
   
   
   
