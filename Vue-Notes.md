@@ -409,7 +409,7 @@ Vue.directive('pin', pinDirective);
 * Filter does transformation, like a filter lens on a camera.
 * Filters are just functions
 
-#### `shoppingCart.vue`
+##### `shoppingCart.vue`
 ```
 {{robot.cost | currency('$')}}
 .....
@@ -419,7 +419,7 @@ filters: {
     currency: currencyFilter,
   },
 ```
-#### `currency-filter.js`
+##### `currency-filter.js`
 
 ```
 export default function (amount, symbol) {
