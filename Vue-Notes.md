@@ -333,6 +333,69 @@ to become this:
 
 *MapMutations* works the same!
 
+#### Custom Directives
+The v-pin example
+
+` <span v-pin:position.top.right class="sale" v-show="selectedPart.onSale">Sale!</span>`
+
+```
+<script>
+import pinDirective from '../shared/pin-directive';
+```
+
+`pin-directive.js`
+You get  a `binding` param with `binding.arg = position` and the subsequent dot are a modifiers list.
+```
+export default {
+  bind: (element, binding) => {
+    if (binding.arg !== 'position') return;
+
+    Object.keys(binding.modifiers).forEach((key) => {
+      element.style[key] = '5px';
+    });
+    element.style.position = 'absolute';
+  },
+};
+```
+
+#### Binding syntax - alternative approach
+
+```
+    <span v-pin="{ bottom: '10px', right: '5px' }"
+      class="sale" v-show="selectedPart.onSale">Sale!</span>
+```
+
+#### lifecycle hooks for directives
+
+```
+function applyStyle(element, binding) {........}
+
+export default {
+  bind: (element, binding) => {
+    applyStyle(element, binding);
+  },
+  update: (element, binding) => {
+    applyStyle(element, binding);
+  },
+  // Other possible lifecycle hooks
+  inserted: {},
+  componentUpdated: {},
+  unbind: {},
+};
+```
+#### The ultimate directive `bind` & `update` shortcut
+A *very common* shortcut to bind to the update and bind lifecycle hook is:
+
+```
+export default function applyStyle(element, binding) {
+  Object.keys(binding.value).forEach((position) => {
+    element.style[position] = binding.value[position];
+  });
+  element.style.position = 'absolute';
+}
+```
+
+### Global directive
 
 
   
