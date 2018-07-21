@@ -427,6 +427,11 @@ export default function (amount, symbol) {
 }
 ```
 #### Global Filters
+##### `main.js`
+```
+import currencyFilter from './shared/currency-filter';
+Vue.filter('currency', currencyFilter);
+```
 
 
 
