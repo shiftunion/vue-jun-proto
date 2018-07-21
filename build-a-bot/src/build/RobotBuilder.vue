@@ -109,7 +109,7 @@ export default {
   },
   mixins: [createdHookMixin],
   methods: {
-    ...mapActions('robots', ['getParts', 'addRobotsToCard']),
+    ...mapActions('robots', ['getParts', 'addRobotToCart']),
     addToCart() {
       const robot = this.selectedRobot;
       const cost =
