@@ -9,14 +9,12 @@
 </template>
 
 <script>
-import pinDirective from '../shared/pin-directive';
 
 const nextValidIndex = (index, maxIndex) => (index + 1) % maxIndex;
 const previousValidIndex = (index, maxIndex) =>
   (maxIndex + index + 1) % maxIndex;
 
 export default {
-  directives: { pin: pinDirective },
   props: {
     parts: { type: Array, required: true },
     position: {

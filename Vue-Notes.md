@@ -397,6 +397,18 @@ export default function applyStyle(element, binding) {
 
 ### Global directive
 
+In `main.js`, register a global directive.
+
+```
+import pinDirective from './shared/pin-directive';
+........
+Vue.directive('pin', pinDirective);
+```
+
+### Filters
+Filter does transformation, like a filter lens on a camera.
+
+
 
   
   
