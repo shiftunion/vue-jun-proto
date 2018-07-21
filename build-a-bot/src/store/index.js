@@ -6,6 +6,9 @@ import userModule from './modules/users';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  state: {
+
+  },
   modules:
   {
     robots: robotsModule,

@@ -301,6 +301,39 @@ In namespaced form, getter notation must change from dot notation to
 * Controversially, `rootState` is not available to `mutations` ,but but be accessed in `actions` via destructuring.
 
 ### Vuex Helper Functions
+#### MapGetter and MapState
+`mapState`, `mapGetter` can be used as convenience syntax for streamlining getters and actions.
+
+```
+import { mapState, mapGetters } from 'vuex';
+
+export default {
+  name: 'app',
+  computed: {
+    ...mapState({
+      rootFoo: 'foo',
+      robotFoo: state => state.robots.foo,
+    }),
+    cart() {
+      return this.$store.state.robots.cart;
+    },
+    ...mapGetters({ rootGetterFoo: 'foo' }),
+    ...mapGetters('robots', { robotsGetterFoo: 'foo' }),
+  },
+};
+```
+
+#### MapActions and MapMutations
+`import { mapActions } from 'vuex';`
+` ...mapActions('robots', ['getParts', 'addRobotsToCard'])`  
+Allows this:  
+`this.$store.dispatch('robots/getParts');`  
+to become this:  
+`this.getParts();`
+
+*MapMutations* works the same!
+
+
 
   
   
