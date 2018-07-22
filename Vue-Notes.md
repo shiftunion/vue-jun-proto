@@ -520,8 +520,7 @@ module.exports = {
   },
   ```
   
- 
- 
- 
  An alternative to this approach is using webpack-chain
+ 
+ `Finito`
 
