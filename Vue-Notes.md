@@ -472,3 +472,56 @@ app.use(history({index: '/index.html'}))
 Vue CLI builds Webpack config dynamically ,so we can't look at it.
 You can pipe it to a file like this `vue inspect --mode=production > webpack.config.js` 
 
+#### Custom Webpack configs in Vue
+Look at the `vue.config.js` file. Add overrides in the `configureWebpack` section like so:
+
+```
+module.exports = {
+  configureWebpack: {
+    module: {
+      rules: [
+        {
+          test: /\.coffee$/,
+          use: ['coffee-loader'],
+        },
+      ],
+    },
+  },
+  ```
+  
+ To override existing rules, use a function like so:
+ ##### `vue.config.js`
+ 
+ ```
+ module.exports = {
+  configureWebpack: (config) => {
+    config.module.rules.push({
+      test: /\.coffee$/,
+      use: ['coffee-loader'],
+    });
+
+    const newRule = {
+      test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 4096,
+            name: 'img/[name].[hash:8].[ext]',
+          },
+        },
+      ],
+    };
+    /// find our rule and switch it out using splice
+    const imagesRuleIndex = config.module.rules
+      .findIndex(x => x.test.source.includes('png|jpe?g|gif'));
+
+    config.module.rules.splice(imagesRuleIndex, 1, newRule);
+  },
+  ```
+  
+ 
+ 
+ 
+ An alternative to this approach is using webpack-chain
+
