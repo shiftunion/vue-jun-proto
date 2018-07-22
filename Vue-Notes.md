@@ -443,9 +443,9 @@ builds a ready to deploy folder called `/dist`
 
 When using `--mode=development` sets the node environment to dev.
 
-#### Vue enviroment variables
+#### Vue environnent variables
 You can use `.env.development|staging|etc` to set environment variables.
-These must all be prefixed with `VUE_APP_` to be accessable, with the exception of `NODE_ENV`.
+These must all be prefixed with `VUE_APP_` to be accessible, with the exception of `NODE_ENV`.
 
 ```
 VUE_APP_TEST=foody
@@ -454,8 +454,21 @@ NODE_ENV=production
 To actually deploy, just copy your production built `/dist` folder to the a webserver to serve. For example:
 
 A node deployment might have an `index.js` that looks like this.
-
+##### `index.js`
 ```
 app.use('/', express.static('dist', {index: 'index.html'}));
 ``` 
+
+#### Deeplinking... getting it working
+Each web server will be different but in node - there is a a built in method
+##### `index.js`
+```
+const history = require('connect-history-api-fallback');
+.....
+app.use(history({index: '/index.html'}))
+```
+
+#### Webpack Config
+Vue CLI builds Webpack config dynamically ,so we can't look at it.
+You can pipe it to a file like this `vue inspect --mode=production > webpack.config.js` 
 
