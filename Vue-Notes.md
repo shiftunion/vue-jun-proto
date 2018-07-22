@@ -11,7 +11,7 @@ install SASS:
 
 `npm install node-sass sass-loader --save-dev`  
 
-Add to `*.vue` style tag
+Add to `*.vue` style tag
 
 `<style lang="scss" scoped>`
 
@@ -28,7 +28,7 @@ export default {
     console.log('Shit went down');
   },
 ```    
-Note: The `created` method is a convention for the hook!  
+Note: The `created` method is a convention for the hook!  
 https://vuejs-tips.github.io/cheatsheet/#Options-Lifecycle-Hooks
 
 ## Inter-component communication
