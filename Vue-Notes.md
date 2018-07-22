@@ -8,7 +8,9 @@ https://github.com/jmcooper/vuejs-fundamentals/tree/master/src
 
 Vue has amazingly simple for SCSS SASS. To
 install SASS:  
+
 `npm install node-sass sass-loader --save-dev`  
+
 Add to `*.vue` style tag  
 `<style lang="scss" scoped>`
 
