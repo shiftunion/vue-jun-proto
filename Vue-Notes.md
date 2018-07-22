@@ -11,7 +11,8 @@ install SASS:
 
 `npm install node-sass sass-loader --save-dev`  
 
-Add to `*.vue` style tag  
+Add to `*.vue` style tag
+
 `<style lang="scss" scoped>`
 
 ## Mixins
