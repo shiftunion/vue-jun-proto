@@ -435,8 +435,10 @@ export default function (amount, symbol) {
 import currencyFilter from './shared/currency-filter';
 Vue.filter('currency', currencyFilter);
 ```
-
-
+### Production Deployment
+#### Vue-cli has a zero config production deployment
+`npm run build`
+builds a ready to deploy 
 
 
 

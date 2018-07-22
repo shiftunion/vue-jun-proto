@@ -21,7 +21,6 @@ export default {
   props: ['startOpen'],
   created() {
     this.open = this.startOpen;
-    console.log(this.startOpen);
   },
 };
 </script>
